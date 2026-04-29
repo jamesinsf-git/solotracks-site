@@ -129,10 +129,12 @@
       background: #1a1a2e;
       box-shadow: 0 20px 50px rgba(0,0,0,0.4);
     }
-    .feature-image img {
+    .feature-image img,
+    .feature-image video {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      display: block;
     }
 
     /* ---------- pitch ---------- */
@@ -342,7 +344,11 @@
         <p>Drag MP3s from your Mac straight into your library over Wi-Fi. No cables. No iTunes. No syncing.</p>
       </div>
       <div class="feature-image">
-        <img src="screenshots/wifi-transfer.png" alt="Wi-Fi transfer screen" />
+        <video class="feature-video" preload="none" muted loop playsinline
+               poster="screenshots/wifi-transfer-poster.jpg"
+               aria-label="Wi-Fi transfer demo: dragging MP3s from a Mac browser into the phone library">
+          <source src="video/wifi-transfer.mp4" type="video/mp4" />
+        </video>
       </div>
     </section>
 
@@ -352,7 +358,11 @@
         <p>Drop A-B markers to loop the riff you're learning. Slow tracks down to 0.25× without changing the pitch. Built for musicians figuring out songs by ear.</p>
       </div>
       <div class="feature-image">
-        <img src="screenshots/player-loop.png" alt="Player with A-B loop markers" />
+        <video class="feature-video" preload="none" muted loop playsinline
+               poster="screenshots/player-loop-poster.jpg"
+               aria-label="A-B loop demo: dropping markers and looping a section at slowed playback">
+          <source src="video/player-loop.mp4" type="video/mp4" />
+        </video>
       </div>
     </section>
 
@@ -362,7 +372,11 @@
         <p>Once a song is on your phone, it stays there. No streaming. No ads. No tracking. Plays on the lock screen, in the Control Center, on a flight, in the subway.</p>
       </div>
       <div class="feature-image">
-        <img src="screenshots/lockscreen.png" alt="Lock screen with playback controls" />
+        <video class="feature-video" preload="none" muted loop playsinline
+               poster="screenshots/lockscreen-poster.jpg"
+               aria-label="Offline demo: enabling airplane mode while music continues to play">
+          <source src="video/lockscreen.mp4" type="video/mp4" />
+        </video>
       </div>
     </section>
 
@@ -426,6 +440,48 @@
     </div>
     <div>&copy; 2026 SoloTracks. Made with care.</div>
   </footer>
+
+  <script>
+    /**
+     * Lazy video player for feature sections.
+     *
+     * - Videos use preload="none", so bytes aren't fetched until needed.
+     * - When a video scrolls into view, we call play().
+     * - When it scrolls out of view, we pause() to save battery and bandwidth.
+     * - Respects prefers-reduced-motion: users with that setting see only the
+     *   poster image and the videos never play or download.
+     * - Falls back gracefully on browsers without IntersectionObserver
+     *   (videos simply remain on their poster frame).
+     */
+    (function () {
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduceMotion) return;
+
+      if (!('IntersectionObserver' in window)) return;
+
+      const videos = document.querySelectorAll('.feature-video');
+      if (!videos.length) return;
+
+      const obs = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            const video = entry.target;
+            if (entry.isIntersecting) {
+              // play() returns a promise that may reject if the browser blocks
+              // autoplay (e.g. low-power mode). Swallow it — the poster still shows.
+              const p = video.play();
+              if (p && typeof p.catch === 'function') p.catch(() => {});
+            } else {
+              video.pause();
+            }
+          });
+        },
+        { threshold: 0.5 }
+      );
+
+      videos.forEach((v) => obs.observe(v));
+    })();
+  </script>
 
 </body>
 </html>
