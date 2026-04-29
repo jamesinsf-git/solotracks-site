@@ -190,6 +190,91 @@
       color: rgba(255,255,255,0.7);
     }
 
+    /* ---------- hero free/pro clarifier ---------- */
+    .free-pro-line {
+      font-size: 14px;
+      color: rgba(255,255,255,0.78);
+      margin: -8px auto 24px;
+      max-width: 440px;
+    }
+    .free-pro-line strong {
+      color: #C4B5FD;
+      font-weight: 600;
+    }
+
+    /* ---------- tier comparison ---------- */
+    .tiers {
+      max-width: 720px;
+      margin: 24px auto 24px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    .tier {
+      padding: 24px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      text-align: left;
+    }
+    .tier.pro {
+      background: rgba(124,58,237,0.10);
+      border-color: rgba(196,181,253,0.35);
+    }
+    .tier-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      gap: 12px;
+    }
+    .tier-name {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+    .tier-price {
+      font-size: 14px;
+      color: rgba(255,255,255,0.65);
+    }
+    .tier.pro .tier-price strong {
+      color: #FFFFFF;
+      font-weight: 800;
+      font-size: 16px;
+      letter-spacing: -0.01em;
+    }
+    .tier ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .tier li {
+      font-size: 14px;
+      color: rgba(255,255,255,0.78);
+      padding: 5px 0 5px 22px;
+      position: relative;
+    }
+    .tier li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: #C4B5FD;
+      font-weight: 700;
+    }
+    .promises-line {
+      text-align: center;
+      font-size: 13px;
+      color: rgba(255,255,255,0.55);
+      margin: 24px auto 20px;
+      letter-spacing: 0.02em;
+    }
+    @media (min-width: 720px) {
+      .tiers {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+    }
+
     /* ---------- footer ---------- */
     footer {
       border-top: 1px solid rgba(255,255,255,0.08);
@@ -231,11 +316,12 @@
   <section class="hero">
     <img src="assets/app-icon.png" alt="SoloTracks app icon" class="hero-icon" />
     <h1>Own your <span class="accent">music</span>.</h1>
-    <p class="sub">Built by a musician. Pay once. Yours forever.</p>
+    <p class="sub">Your music. Your way. Pay once. Yours forever.</p>
+    <p class="free-pro-line"><strong>Free</strong> to try with a 50-song library. Unlock the rest for <strong>$7.99 once</strong>.</p>
     <a href="https://apps.apple.com/" class="app-store" aria-label="Download on the App Store">
       <img src="assets/app-store-badge.svg" alt="Download on the App Store" />
     </a>
-    <p class="pricing-line">iOS only · Pay once · No subscription</p>
+    <p class="pricing-line">Free to download · $7.99 one-time for Pro · No subscription</p>
   </section>
 
   <!-- ============ VIDEO ============ -->
@@ -291,16 +377,40 @@
   </section>
 
   <!-- ============ PRICE ============ -->
-  <section class="wrap">
-    <div class="price-card">
-      <div class="amount">$7.99</div>
-      <div class="qualifier">One-time. No subscription. Free for libraries up to 50 songs.</div>
-      <div class="promises">
-        <span class="promise">No ads</span>
-        <span class="promise">No tracking</span>
-        <span class="promise">No upsells</span>
-        <span class="promise">No "Pro+" tier later</span>
+  <section class="wrap" style="padding-bottom: 48px;">
+    <div class="tiers">
+      <div class="tier">
+        <div class="tier-header">
+          <span class="tier-name">Free</span>
+          <span class="tier-price">Forever</span>
+        </div>
+        <ul>
+          <li>Up to 50 songs in your library</li>
+          <li>Full player — shuffle, repeat, queue, scrub</li>
+          <li>Lock screen &amp; Control Center controls</li>
+          <li>Playlists &amp; search</li>
+          <li>MP3, M4A, and WAV support</li>
+        </ul>
       </div>
+      <div class="tier pro">
+        <div class="tier-header">
+          <span class="tier-name">Pro</span>
+          <span class="tier-price"><strong>$7.99</strong> · once</span>
+        </div>
+        <ul>
+          <li>Unlimited library</li>
+          <li>Wi-Fi transfer from your Mac</li>
+          <li>A-B loop points</li>
+          <li>Variable playback speed (0.25× – 2×)</li>
+          <li>Sleep timer</li>
+          <li>Smart playlists</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="promises-line">No subscription. No ads. No tracking. No "Pro+" tier later.</p>
+
+    <div style="text-align: center;">
       <a href="https://apps.apple.com/" class="app-store" aria-label="Download on the App Store">
         <img src="assets/app-store-badge.svg" alt="Download on the App Store" style="height:48px;" />
       </a>
