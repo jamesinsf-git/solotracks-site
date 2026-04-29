@@ -2,3 +2,6 @@
 *.log
 .vscode/
 .idea/
+
+# Raw video source files — large, not served by the site
+assets/raw/
