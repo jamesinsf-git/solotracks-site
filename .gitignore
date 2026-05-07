@@ -5,3 +5,10 @@
 
 # Raw video source files — large, not served by the site
 assets/raw/
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example
