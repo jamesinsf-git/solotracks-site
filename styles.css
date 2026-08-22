@@ -273,6 +273,9 @@ a:hover { text-decoration: underline; }
   gap: 22px;
   margin-top: 8px;
 }
+/* When a block stacks on mobile (phone above the rows), give the first
+   row room to breathe. Reset to 0 in the side-by-side desktop grid. */
+.block-grid .feature-list { margin-top: 34px; }
 .feature-row {
   display: flex;
   gap: 15px;
@@ -450,6 +453,14 @@ a:hover { text-decoration: underline; }
 .tier-price { font-size: 14px; color: var(--ink-soft); }
 .tier.pro .tier-price strong {
   color: #fff; font-weight: 700; font-size: 16px; letter-spacing: -0.01em;
+}
+.tier-trial {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 12.5px;
+  letter-spacing: 0.01em;
+  color: var(--lav);
+  margin: -4px 0 16px;
 }
 .tier ul { list-style: none; padding: 0; margin: 0; }
 .tier li {
