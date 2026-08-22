@@ -1,416 +1,346 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SoloTracks — Own your music.</title>
-  <meta name="description" content="A music player for the songs you actually own. Pay once. No subscription. No ads." />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>SoloTracks — Own your music.</title>
+<meta name="description" content="A music player for the songs you actually own. Slow it down, loop it, learn it — no ads, no subscription, no internet required. Pay once." />
+<meta name="theme-color" content="#08070E" />
 
-  <!-- Open Graph / social sharing -->
-  <meta property="og:title" content="SoloTracks — Own your music." />
-  <meta property="og:description" content="A music player for the songs you actually own. Pay once. No subscription. No ads." />
-  <meta property="og:image" content="https://solotracks.app/assets/og-image.png" />
-  <meta property="og:url" content="https://solotracks.app" />
-  <meta property="og:type" content="website" />
-  <meta name="twitter:card" content="summary_large_image" />
+<!-- Open Graph / social sharing -->
+<meta property="og:title" content="SoloTracks — Own your music." />
+<meta property="og:description" content="A music player for the songs you actually own. Pay once. No subscription. No ads." />
+<meta property="og:image" content="https://solotracks.app/assets/og-image.png" />
+<meta property="og:url" content="https://solotracks.app" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
 
-  <!-- Icons -->
-  <link rel="icon" type="image/png" href="assets/favicon.png" />
-  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+<!-- Icons -->
+<link rel="icon" type="image/png" href="assets/favicon.png" />
+<link rel="apple-touch-icon" href="assets/app-icon.png" />
 
-  <style>
-    /* ---------- reset + base ---------- */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
-      background: #0A0A0F;
-      color: #FFFFFF;
-      line-height: 1.5;
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-    }
-    img, video { max-width: 100%; display: block; }
-    a { color: inherit; }
-
-    /* ---------- shared ---------- */
-    .wrap { max-width: 960px; margin: 0 auto; padding: 0 24px; }
-    .accent { color: #C4B5FD; }
-    .muted { color: rgba(255,255,255,0.6); }
-
-    /* ---------- hero ---------- */
-    .hero {
-      padding: 64px 24px 48px;
-      text-align: center;
-      background:
-        radial-gradient(ellipse at 50% 0%, rgba(124,58,237,0.35) 0%, rgba(10,10,15,0) 60%),
-        #0A0A0F;
-    }
-    .hero-icon {
-      width: 96px; height: 96px;
-      border-radius: 22px;
-      margin: 0 auto 24px;
-      box-shadow: 0 12px 40px rgba(124,58,237,0.4);
-    }
-    .hero h1 {
-      font-size: 44px;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      line-height: 1.05;
-      margin-bottom: 14px;
-    }
-    .hero .sub {
-      font-size: 18px;
-      color: rgba(255,255,255,0.72);
-      max-width: 480px;
-      margin: 0 auto 28px;
-    }
-    .app-store {
-      display: inline-block;
-      transition: transform 0.15s ease;
-    }
-    .app-store:hover { transform: scale(1.03); }
-    .app-store img { height: 52px; }
-    .pricing-line {
-      margin-top: 14px;
-      font-size: 13px;
-      color: rgba(255,255,255,0.5);
-      letter-spacing: 0.02em;
-    }
-
-    /* ---------- video ---------- */
-    .video-section {
-      padding: 32px 24px 64px;
-    }
-    .video-frame {
-      max-width: 300px;
-      margin: 0 auto;
-      border-radius: 28px;
-      overflow: hidden;
-      box-shadow: none;
-      aspect-ratio: 9 / 19.5;
-      background: #000;
-      isolation: isolate;
-      transform: translateZ(0);
-    }
-    .video-frame video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 28px;
-      transform: scale(1.04);
-    }
-
-    /* ---------- features ---------- */
-    .features {
-      padding: 32px 0 32px;
-    }
-    .feature {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 32px;
-      align-items: center;
-      padding: 48px 24px;
-    }
-    .feature-text h2 {
-      font-size: 32px;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      line-height: 1.1;
-      margin-bottom: 16px;
-    }
-    .feature-text p {
-      font-size: 17px;
-      color: rgba(255,255,255,0.72);
-      max-width: 440px;
-    }
-    .feature-image {
-      max-width: 280px;
-      margin: 0 auto;
-      border-radius: 24px;
-      overflow: hidden;
-      aspect-ratio: 9 / 19.5;
-      background: #1a1a2e;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.4);
-      isolation: isolate;
-      transform: translateZ(0);
-    }
-    .feature-image img,
-    .feature-image video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      border-radius: 24px;
-    }
-    .feature-image video {
-      transform: scale(1.04);
-    }
-
-    /* ---------- pitch ---------- */
-    .pitch {
-      padding: 64px 24px;
-      text-align: center;
-      background: linear-gradient(180deg, rgba(124,58,237,0.06) 0%, rgba(10,10,15,0) 100%);
-    }
-    .pitch p {
-      font-size: 16px;
-      max-width: 580px;
-      margin: 0 auto 16px;
-      color: rgba(255,255,255,0.85);
-      line-height: 1.55;
-    }
-    .pitch p.signature {
-      font-size: 15px;
-      color: rgba(255,255,255,0.55);
-      font-style: italic;
-    }
-
-    /* ---------- price reassurance ---------- */
-    .price-card {
-      max-width: 480px;
-      margin: 24px auto 64px;
-      padding: 28px;
-      border-radius: 18px;
-      background: rgba(124,58,237,0.10);
-      border: 1px solid rgba(196,181,253,0.3);
-      text-align: center;
-    }
-    .price-card .amount {
-      font-size: 32px;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      margin-bottom: 6px;
-    }
-    .price-card .qualifier {
-      font-size: 14px;
-      color: rgba(255,255,255,0.65);
-      margin-bottom: 16px;
-    }
-    .price-card .promises {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 8px;
-      margin-bottom: 20px;
-    }
-    .price-card .promise {
-      font-size: 12px;
-      padding: 5px 11px;
-      border-radius: 100px;
-      background: rgba(255,255,255,0.06);
-      color: rgba(255,255,255,0.7);
-    }
-
-    /* ---------- hero free/pro clarifier ---------- */
-    .free-pro-line {
-      font-size: 14px;
-      color: rgba(255,255,255,0.78);
-      margin: -8px auto 24px;
-      max-width: 440px;
-    }
-    .free-pro-line strong {
-      color: #C4B5FD;
-      font-weight: 600;
-    }
-
-    /* ---------- tier comparison ---------- */
-    .tiers {
-      max-width: 720px;
-      margin: 24px auto 24px;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 16px;
-    }
-    .tier {
-      padding: 24px;
-      border-radius: 16px;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.08);
-      text-align: left;
-    }
-    .tier.pro {
-      background: rgba(124,58,237,0.10);
-      border-color: rgba(196,181,253,0.35);
-    }
-    .tier-header {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      margin-bottom: 14px;
-      gap: 12px;
-    }
-    .tier-name {
-      font-size: 18px;
-      font-weight: 700;
-      letter-spacing: -0.01em;
-    }
-    .tier-price {
-      font-size: 14px;
-      color: rgba(255,255,255,0.65);
-    }
-    .tier.pro .tier-price strong {
-      color: #FFFFFF;
-      font-weight: 800;
-      font-size: 16px;
-      letter-spacing: -0.01em;
-    }
-    .tier ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    .tier li {
-      font-size: 14px;
-      color: rgba(255,255,255,0.78);
-      padding: 5px 0 5px 22px;
-      position: relative;
-    }
-    .tier li::before {
-      content: "✓";
-      position: absolute;
-      left: 0;
-      color: #C4B5FD;
-      font-weight: 700;
-    }
-    .promises-line {
-      text-align: center;
-      font-size: 13px;
-      color: rgba(255,255,255,0.55);
-      margin: 24px auto 20px;
-      letter-spacing: 0.02em;
-    }
-    @media (min-width: 720px) {
-      .tiers {
-        grid-template-columns: 1fr 1fr;
-        gap: 20px;
-      }
-    }
-
-    /* ---------- footer ---------- */
-    footer {
-      border-top: 1px solid rgba(255,255,255,0.08);
-      padding: 32px 24px 48px;
-      text-align: center;
-      color: rgba(255,255,255,0.45);
-      font-size: 13px;
-    }
-    footer a {
-      color: rgba(255,255,255,0.7);
-      text-decoration: none;
-      margin: 0 10px;
-    }
-    footer a:hover { color: #C4B5FD; }
-    .footer-links {
-      margin-bottom: 12px;
-    }
-
-    /* ---------- breakpoints ---------- */
-    @media (min-width: 720px) {
-      .hero { padding: 96px 24px 64px; }
-      .hero h1 { font-size: 56px; }
-      .hero .sub { font-size: 20px; }
-      .feature { padding: 64px 24px; text-align: center; }
-      .feature-text { margin: 0 auto; }
-      .feature-text p { margin-left: auto; margin-right: auto; }
-      .feature-text h2 { font-size: 38px; }
-      .video-frame { max-width: 320px; }
-    }
-  </style>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
+<div class="col col-home">
+
   <!-- ============ HERO ============ -->
-  <section class="hero">
-    <img src="assets/app-icon.png" alt="SoloTracks app icon" class="hero-icon" />
-    <h1>Solo<span class="accent">Tracks</span></h1>
-    <p class="sub">Your music. Your way. Yours forever.</p>
-    <a href="https://apps.apple.com/us/app/solotracks/id6762542575" class="app-store" aria-label="Download on the App Store">
-      <img src="assets/app-store-badge.svg" alt="Download on the App Store" />
-    </a>
-    <p class="pricing-line">Free for Basic · $7.99 one-time upgrade to Pro </br>No subscription</p>
-  </section>
-  <!-- ============ VIDEO ============ -->
-  <section class="video-section">
-    <div class="video-frame">
-      <video autoplay muted loop playsinline poster="video/demo-poster.jpg">
-        <source src="video/demo.mp4" type="video/mp4" />
-      </video>
+  <section class="section hero">
+    <div class="bokeh" aria-hidden="true"></div>
+
+    <header class="hero-header">
+      <a href="index.html" class="wordmark-sm small-wordmark">SoloTracks</a>
+      <nav>
+        <a href="support.html">Support</a>
+        <a href="privacy.html">Privacy</a>
+      </nav>
+    </header>
+
+    <div class="hero-inner">
+      <img src="assets/app-icon.png" alt="SoloTracks app icon" class="hero-icon" />
+
+      <div class="eyebrow hero-eyebrow">Own Your Music · Pay Once · No Subscription</div>
+
+      <div class="flourish" aria-hidden="true">
+        <span class="rule l"></span><span class="mark">▶</span><span class="rule r"></span>
+      </div>
+
+      <h1 class="h1-wordmark foil">SoloTracks</h1>
+
+      <div class="subhead">Your music. Your way. Yours forever.</div>
+
+      <p class="tagline">A player for the songs you actually own. Slow them down, loop the tricky parts, and learn them by ear — with no ads, no subscription, and no internet required.</p>
+
+      <div class="badge-row">
+        <a class="appstore-badge pulse" href="https://apps.apple.com/us/app/solotracks/id6762542575" aria-label="Download SoloTracks on the App Store">
+          <img src="assets/app-store-badge.svg" alt="Download on the App Store" />
+        </a>
+      </div>
+
+      <p class="pricing-line"><strong>Free</strong> for Basic · <strong>$7.99</strong> one-time upgrade to Pro · No subscription</p>
+
+      <div class="phone float" role="img" aria-label="SoloTracks player">
+        <div class="screen">
+          <video class="lazy-video" autoplay muted loop playsinline preload="none" poster="video/demo-poster.jpg">
+            <source src="video/demo.mp4" type="video/mp4" />
+          </video>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- ============ FEATURES ============ -->
-  <div class="features wrap">
+  <!-- ============ AT A GLANCE ============ -->
+  <section class="section alt-a grid-2">
+    <div class="flourish"><span class="rule l"></span><span class="mark">▶</span><span class="rule r"></span></div>
+    <h2 class="h2 section-title-gradient">EVERY TRACK.<br>EVERY TOOL.</h2>
+    <div class="eyebrow" style="text-align:center;margin-top:6px;">A full player, built for musicians</div>
 
-    <section class="feature">
-      <div class="feature-text">
-        <h2>Drop in songs<br>from your Mac.</h2>
-        <p>Drag MP3s from your Mac straight into your library over Wi-Fi. No cables. No iTunes. No syncing.</p>
+    <div class="feature-list" style="margin-top:26px;">
+      <div class="feature-row">
+        <div class="icon-circle">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+        </div>
+        <div>
+          <div class="feature-title">Songs You Own</div>
+          <div class="feature-body">MP3, M4A, and WAV — no streaming, no library you rent.</div>
+        </div>
       </div>
-      <div class="feature-image">
-        <video class="feature-video" preload="none" muted loop playsinline
-               poster="screenshots/wifi-transfer-poster.jpg"
-               aria-label="Wi-Fi transfer demo: dragging MP3s from a Mac browser into the phone library">
-          <source src="video/wifi-transfer.mp4" type="video/mp4" />
-        </video>
+      <div class="feature-row">
+        <div class="icon-circle">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="13 19 22 12 13 5 13 19"/><polygon points="2 19 11 12 2 5 2 19"/></svg>
+        </div>
+        <div>
+          <div class="feature-title">Variable Speed</div>
+          <div class="feature-body">0.25× to 2× without ever changing the pitch.</div>
+        </div>
       </div>
-    </section>
+      <div class="feature-row">
+        <div class="icon-circle">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+        </div>
+        <div>
+          <div class="feature-title">A-B Loop Points</div>
+          <div class="feature-body">Loop the one riff you're learning until it sticks.</div>
+        </div>
+      </div>
+      <div class="feature-row">
+        <div class="icon-circle">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+        </div>
+        <div>
+          <div class="feature-title">Playlists &amp; Search</div>
+          <div class="feature-body">Playlists, smart playlists, shuffle, repeat, and queue.</div>
+        </div>
+      </div>
+      <div class="feature-row">
+        <div class="icon-circle">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </div>
+        <div>
+          <div class="feature-title">Lock Screen Controls</div>
+          <div class="feature-body">Play, pause, skip, and scrub from the lock screen — free.</div>
+        </div>
+      </div>
+      <div class="feature-row">
+        <div class="icon-circle">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </div>
+        <div>
+          <div class="feature-title">Offline Forever</div>
+          <div class="feature-body">No ads. No tracking. No connection ever required.</div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <section class="feature reverse">
-      <div class="feature-text">
-        <h2>Slow it down. Loop&nbsp;it.<br>Learn it.</h2>
-        <p>Drop A-B markers to loop the riff you're learning. Slow tracks down to 0.25× without changing the pitch. Built for singers and musicians learning songs by ear.</p>
+  <!-- ============ WI-FI TRANSFER ============ -->
+  <section class="section alt-b">
+    <div class="block-head">
+      <h2 class="h2 section-title-gradient">DROP IN SONGS<br>FROM YOUR MAC</h2>
+      <p class="sub">No cables. No iTunes. No syncing.</p>
+    </div>
+    <div class="block-grid">
+      <div class="phone" role="img" aria-label="Wi-Fi transfer: dragging MP3s from a Mac browser into the phone library">
+        <div class="screen">
+          <video class="lazy-video" muted loop playsinline preload="none" poster="screenshots/wifi-transfer-poster.jpg">
+            <source src="video/wifi-transfer.mp4" type="video/mp4" />
+          </video>
+        </div>
       </div>
-      <div class="feature-image">
-        <video class="feature-video" preload="none" muted loop playsinline
-               poster="screenshots/player-loop-poster.jpg"
-               aria-label="A-B loop demo: dropping markers and looping a section at slowed playback">
-          <source src="video/player-loop.mp4" type="video/mp4" />
-        </video>
+      <div class="feature-list">
+        <div class="feature-row">
+          <div class="icon-circle sm">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+          </div>
+          <div>
+            <div class="feature-title">Drag &amp; Drop over Wi-Fi</div>
+            <div class="feature-body">Drag MP3s from your Mac browser straight into your library.</div>
+          </div>
+        </div>
+        <div class="feature-row">
+          <div class="icon-circle sm">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <div>
+            <div class="feature-title">Any Browser, Any Computer</div>
+            <div class="feature-body">Open the address it shows you — Mac or PC, no app to install.</div>
+          </div>
+        </div>
+        <div class="feature-row">
+          <div class="icon-circle sm">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div>
+            <div class="feature-title">Stays on Your Network</div>
+            <div class="feature-body">Files travel directly between your devices — nothing leaves your house.</div>
+          </div>
+        </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="feature reverse">
-      <div class="feature-text">
-        <h2>Layer your mixes.<br>Practice with confidence.</h2>
-        <p>Layer the instrumental and the full mix, the backing track and the guide vocals, the guitar part and bass part. They stay perfectly in sync — switch between them or play them together while you sing or play along.</p>
-        <p>(Feature coming soon)</p>
-      </div>
-      <div class="feature-image">
-        <video class="feature-video" preload="none" muted loop playsinline
-               poster="screenshots/layers.jpg"
-               aria-label="Layers demo">
-          <source src="video/layers.mp4" type="video/mp4" />
-        </video>
-      </div>
-    </section>
+  <!-- ============ SLOW / LOOP ============ -->
+  <section class="section alt-a">
+    <div class="block-head">
+      <h2 class="h2 section-title-gradient">SLOW IT DOWN.<br>LOOP IT. LEARN IT.</h2>
+      <p class="sub">Learn any song by ear, one section at a time.</p>
+    </div>
 
-    <section class="feature">
-      <div class="feature-text">
-        <h2>Your music.<br>Offline. Forever.</h2>
-        <p>Once a song is on your phone, it stays there. No streaming. No ads. No tracking. Plays on the lock screen, in the Control Center, on a flight, in the subway.</p>
-      </div>
-      <div class="feature-image">
-        <video class="feature-video" preload="none" muted loop playsinline
-               poster="screenshots/lockscreen-poster.jpg"
-               aria-label="Offline demo: enabling airplane mode while music continues to play">
-          <source src="video/lockscreen.mp4" type="video/mp4" />
-        </video>
-      </div>
-    </section>
+    <div class="meter" aria-hidden="true">
+      <div class="meter-top"><span>0.5× SPEED</span><span class="r">A ▸ B LOOP</span></div>
+      <div class="meter-bar"><div class="meter-fill"></div></div>
+    </div>
 
-  </div>
+    <div class="block-grid reverse">
+      <div class="phone" role="img" aria-label="A-B loop: dropping markers and looping a section at slowed playback">
+        <div class="screen">
+          <video class="lazy-video" muted loop playsinline preload="none" poster="screenshots/player-loop-poster.jpg">
+            <source src="video/player-loop.mp4" type="video/mp4" />
+          </video>
+        </div>
+      </div>
+      <div class="feature-list">
+        <div class="feature-row">
+          <div class="icon-circle sm">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="13 19 22 12 13 5 13 19"/><polygon points="2 19 11 12 2 5 2 19"/></svg>
+          </div>
+          <div>
+            <div class="feature-title">Slow to 0.25×</div>
+            <div class="feature-body">Slow tracks right down without changing the pitch.</div>
+          </div>
+        </div>
+        <div class="feature-row">
+          <div class="icon-circle sm">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+          </div>
+          <div>
+            <div class="feature-title">Drop A-B Markers</div>
+            <div class="feature-body">Loop the exact region of the riff you're working on.</div>
+          </div>
+        </div>
+        <div class="feature-row">
+          <div class="icon-circle sm">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+          </div>
+          <div>
+            <div class="feature-title">Built for Ears</div>
+            <div class="feature-body">Made for singers and musicians learning songs by ear.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <!-- ============ PITCH ============ -->
-  <section class="pitch">
-    <div class="wrap">
-      <p>As a singer and musician, I built SoloTracks because I needed a player that could slow songs down, loop the tricky parts, isolate and blend stems together, so I could learn the songs easier. Along the way it became something else too: a player for the music I already own, with no ads, no subscription, and no need for an internet connection."</p>
+  <!-- ============ LAYERS ============ -->
+  <section class="section alt-b">
+    <div class="block-head">
+      <h2 class="h2 section-title-gradient">LAYER YOUR MIXES<span class="soon">Coming soon</span></h2>
+      <p class="sub">Practice with confidence — everything stays in sync.</p>
+    </div>
+    <div class="block-grid">
+      <div class="phone" role="img" aria-label="Layers: switching between an instrumental and a full mix in sync">
+        <div class="screen">
+          <video class="lazy-video" muted loop playsinline preload="none" poster="screenshots/layers-poster.jpg">
+            <source src="video/layers.mp4" type="video/mp4" />
+          </video>
+        </div>
+      </div>
+      <div class="feature-list">
+        <div class="feature-row">
+          <div class="icon-circle sm">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+          </div>
+          <div>
+            <div class="feature-title">Stack Your Stems</div>
+            <div class="feature-body">Instrumental and full mix, backing track and guide vocals, guitar and bass.</div>
+          </div>
+        </div>
+        <div class="feature-row">
+          <div class="icon-circle sm">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div>
+            <div class="feature-title">Perfectly in Sync</div>
+            <div class="feature-body">Switch between layers or play them together, always locked together.</div>
+          </div>
+        </div>
+        <div class="feature-row">
+          <div class="icon-circle sm">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+          </div>
+          <div>
+            <div class="feature-title">Sing &amp; Play Along</div>
+            <div class="feature-body">Drop the guide vocal, keep the band — practice your part with confidence.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ OFFLINE (signature band) ============ -->
+  <section class="section signature">
+    <div class="flourish"><span class="rule l"></span><span class="mark">▶</span><span class="rule r"></span></div>
+    <div class="block-head">
+      <h2 class="h2 section-title-gradient">YOUR MUSIC.<br>OFFLINE. FOREVER.</h2>
+      <p class="sub">Once a song is on your phone, it stays there.</p>
+    </div>
+    <div class="block-grid reverse">
+      <div class="phone" role="img" aria-label="Offline playback continuing on the lock screen in airplane mode">
+        <div class="screen">
+          <video class="lazy-video" muted loop playsinline preload="none" poster="screenshots/lockscreen-poster.jpg">
+            <source src="video/lockscreen.mp4" type="video/mp4" />
+          </video>
+        </div>
+      </div>
+      <div class="feature-list">
+        <div class="feature-row">
+          <div class="icon-circle sm">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          </div>
+          <div>
+            <div class="feature-title">No Streaming</div>
+            <div class="feature-body">Plays on a flight, in the subway, anywhere with no signal.</div>
+          </div>
+        </div>
+        <div class="feature-row">
+          <div class="icon-circle sm">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+          </div>
+          <div>
+            <div class="feature-title">No Ads, No Tracking</div>
+            <div class="feature-body">Nothing between you and your music. Nothing watching.</div>
+          </div>
+        </div>
+        <div class="feature-row">
+          <div class="icon-circle sm">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <div>
+            <div class="feature-title">Lock Screen &amp; Control Center</div>
+            <div class="feature-body">Full playback controls without opening the app.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOUNDER PITCH ============ -->
+  <section class="section alt-a">
+    <div class="card" style="max-width:600px;margin:0 auto;">
+      <p>As a singer and musician, I built SoloTracks because I needed a player that could slow songs down, loop the tricky parts, and blend stems together so I could learn songs more easily. Along the way it became something else too: a player for the music I already own — with no ads, no subscription, and no need for an internet connection.</p>
       <p class="signature">— James</p>
     </div>
   </section>
 
   <!-- ============ PRICE ============ -->
-  <section class="wrap" style="padding-bottom: 48px;">
+  <section class="section alt-b">
+    <div class="flourish"><span class="rule l"></span><span class="mark">▶</span><span class="rule r"></span></div>
+    <h2 class="h2 small section-title-gradient">ONE PRICE. YOURS FOREVER.</h2>
+
     <div class="tiers">
       <div class="tier">
         <div class="tier-header">
@@ -428,7 +358,7 @@
       <div class="tier pro">
         <div class="tier-header">
           <span class="tier-name">Pro</span>
-          <span class="tier-price"><strong>$7.99</strong>  one-time</span>
+          <span class="tier-price"><strong>$7.99</strong> one-time</span>
         </div>
         <ul>
           <li>Unlimited library</li>
@@ -442,65 +372,33 @@
     </div>
 
     <p class="promises-line">No subscription. No ads. No tracking.</p>
+  </section>
 
-    <div style="text-align: center;">
-      <a href="https://apps.apple.com/us/app/solotracks/id6762542575" class="app-store" aria-label="Download on the App Store">
-        <img src="assets/app-store-badge.svg" alt="Download on the App Store" style="height:48px;" />
+  <!-- ============ CTA BAND ============ -->
+  <section class="section cta-band">
+    <div class="cta-line"><span class="m">▶</span><span class="section-title-gradient">OWN YOUR MUSIC.</span><span class="m">◀</span></div>
+    <div class="badge-row">
+      <a class="appstore-badge pulse" href="https://apps.apple.com/us/app/solotracks/id6762542575" aria-label="Download SoloTracks on the App Store">
+        <img src="assets/app-store-badge.svg" alt="Download on the App Store" />
       </a>
     </div>
   </section>
 
   <!-- ============ FOOTER ============ -->
-  <footer>
-    <div class="footer-links">
+  <footer class="footer">
+    <div class="wordmark-lg foil">SoloTracks</div>
+    <nav>
+      <a href="index.html" class="current">Home</a>
       <a href="support.html">Support</a>
       <a href="privacy.html">Privacy</a>
       <a href="mailto:hello@solotracks.app">Contact</a>
-    </div>
-    <div>&copy; 2026 SoloTracks. Made with care.</div>
+    </nav>
+    <p class="madeby">Made with care</p>
+    <p class="copyright">© 2026 SoloTracks. All rights reserved.</p>
   </footer>
 
-  <script>
-    /**
-     * Lazy video player for feature sections.
-     *
-     * - Videos use preload="none", so bytes aren't fetched until needed.
-     * - When a video scrolls into view, we call play().
-     * - When it scrolls out of view, we pause() to save battery and bandwidth.
-     * - Respects prefers-reduced-motion: users with that setting see only the
-     *   poster image and the videos never play or download.
-     * - Falls back gracefully on browsers without IntersectionObserver
-     *   (videos simply remain on their poster frame).
-     */
-    (function () {
-      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (reduceMotion) return;
+</div>
 
-      if (!('IntersectionObserver' in window)) return;
-
-      const videos = document.querySelectorAll('.feature-video');
-      if (!videos.length) return;
-
-      const obs = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            const video = entry.target;
-            if (entry.isIntersecting) {
-              // play() returns a promise that may reject if the browser blocks
-              // autoplay (e.g. low-power mode). Swallow it — the poster still shows.
-              const p = video.play();
-              if (p && typeof p.catch === 'function') p.catch(() => {});
-            } else {
-              video.pause();
-            }
-          });
-        },
-        { threshold: 0.5 }
-      );
-
-      videos.forEach((v) => obs.observe(v));
-    })();
-  </script>
-
+<script src="site.js"></script>
 </body>
 </html>
