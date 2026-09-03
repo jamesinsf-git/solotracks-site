@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{width:1200px;height:630px;overflow:hidden}
+  body{
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    font-family:'Inter',-apple-system,system-ui,sans-serif;color:#F5F3FF;
+    background:radial-gradient(120% 90% at 50% -10%, #2a1856 0%, #170e2e 46%, #08070E 100%);
+    position:relative;
+  }
+  .bokeh{position:absolute;top:-120px;right:-120px;width:420px;height:420px;
+    background:radial-gradient(circle, rgba(124,58,237,0.30), transparent 68%);filter:blur(10px)}
+  .pill{
+    display:inline-flex;align-items:center;gap:12px;
+    font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:20px;letter-spacing:0.08em;text-transform:uppercase;
+    color:#EDE9FE;background:linear-gradient(180deg, rgba(124,58,237,0.28), rgba(124,58,237,0.12));
+    border:1px solid rgba(167,139,250,0.55);border-radius:999px;padding:11px 24px;margin-bottom:26px;
+  }
+  .pill .dot{width:11px;height:11px;border-radius:50%;background:#A78BFA;box-shadow:0 0 14px 2px rgba(167,139,250,0.9)}
+  .icon{width:104px;height:104px;border-radius:24px;box-shadow:0 18px 50px rgba(124,58,237,0.5);margin-bottom:20px}
+  .wordmark{
+    font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:118px;line-height:0.9;letter-spacing:-0.03em;
+    background:linear-gradient(180deg,#F5F3FF 0%,#DDD6FE 24%,#C4B5FD 48%,#A78BFA 70%,#7C3AED 92%);
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+    text-shadow:0 2px 20px rgba(124,58,237,0.3);
+  }
+  .sub{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:30px;letter-spacing:0.02em;color:#EDE9FE;margin-top:14px}
+  .themes{display:flex;gap:26px;margin-top:34px}
+  .sw{display:flex;flex-direction:column;align-items:center;gap:9px}
+  .sw .chip{width:58px;height:58px;border-radius:16px;border:1px solid rgba(255,255,255,0.14);box-shadow:0 10px 26px -12px rgba(0,0,0,0.8)}
+  .sw .lbl{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:14px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(245,243,255,0.6)}
+  .aurora{background:linear-gradient(140deg,#9F67FF,#7C3AED)}
+  .ember{background:linear-gradient(140deg,#FFB347,#EA580C)}
+  .mint{background:linear-gradient(140deg,#5EEAD4,#0D9488)}
+  .ink{background:linear-gradient(140deg,#FF7D68,#C9180A)}
+  .foot{position:absolute;bottom:40px;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:19px;letter-spacing:0.06em;color:rgba(196,181,253,0.72)}
+</style>
+</head>
+<body>
+  <div class="bokeh"></div>
+  <div class="pill"><span class="dot"></span> Version 2.0 &middot; Completely Redesigned</div>
+  <img class="icon" src="assets/app-icon.png" alt="" />
+  <div class="wordmark">SoloTracks</div>
+  <div class="sub">Own your music. Now in four themes.</div>
+  <div class="themes">
+    <div class="sw"><span class="chip aurora"></span><span class="lbl">Aurora</span></div>
+    <div class="sw"><span class="chip ember"></span><span class="lbl">Ember</span></div>
+    <div class="sw"><span class="chip mint"></span><span class="lbl">Mint</span></div>
+    <div class="sw"><span class="chip ink"></span><span class="lbl">Ink</span></div>
+  </div>
+  <div class="foot">Pay once &middot; No subscription &middot; No ads</div>
+</body>
+</html>

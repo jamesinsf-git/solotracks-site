@@ -630,6 +630,68 @@ a:hover { text-decoration: underline; }
 }
 .home-link:hover { color: var(--lav); }
 
+/* ---- Themes showcase (2.0) ---- */
+.themes-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  max-width: 460px;
+  margin: 26px auto 0;
+}
+.theme-card { text-align: center; }
+.theme-swatch {
+  aspect-ratio: 1 / 1.16;
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--hair-2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  box-shadow: 0 16px 36px -18px rgba(0,0,0,0.85);
+  background-color: var(--t-bg);
+  background-image:
+    radial-gradient(90% 42% at 50% 0%, var(--t-glow), transparent 62%),
+    linear-gradient(180deg, var(--t-tint), transparent 60%);
+}
+.theme-orb {
+  width: 46%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 42%, var(--t-a) 0 30%, var(--t-b) 30% 34%, transparent 34%),
+    repeating-radial-gradient(circle at 50% 50%, #0b0b0e 0 4px, #17171d 4px 7px);
+  box-shadow: inset 0 0 16px rgba(0,0,0,0.6);
+}
+.theme-bar {
+  width: 56%; height: 4px;
+  border-radius: 4px;
+  background: rgba(255,255,255,0.14);
+  overflow: hidden;
+}
+.theme-bar::before {
+  content: "";
+  display: block;
+  width: 48%; height: 100%;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--t-b), var(--t-a));
+}
+.theme-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 12.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--t-a);
+  margin-top: 12px;
+}
+.t-aurora { --t-a:#9F67FF; --t-b:#7C3AED; --t-bg:#0A0A0F; --t-glow:rgba(159,103,255,0.32); --t-tint:rgba(124,58,237,0.16); }
+.t-ember  { --t-a:#FFB347; --t-b:#EA580C; --t-bg:#0E0A09; --t-glow:rgba(255,179,71,0.30);  --t-tint:rgba(234,88,12,0.16); }
+.t-mint   { --t-a:#5EEAD4; --t-b:#0D9488; --t-bg:#07100E; --t-glow:rgba(94,234,212,0.28);  --t-tint:rgba(13,148,136,0.18); }
+.t-ink    { --t-a:#FF7D68; --t-b:#C9180A; --t-bg:#0A0708; --t-glow:rgba(255,125,104,0.30); --t-tint:rgba(201,24,10,0.18); }
+
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .foil, .phone.float, .appstore-badge.pulse { animation: none; }
@@ -703,6 +765,12 @@ a:hover { text-decoration: underline; }
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 28px 36px;
+  }
+
+  .themes-row {
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 720px;
+    gap: 20px;
   }
 
   .phone { max-width: 300px; border-radius: 46px; }

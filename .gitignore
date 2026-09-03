@@ -5,3 +5,6 @@
 
 # Raw video source files — large, not served by the site
 assets/raw/
+
+# Source PNG screenshots — kept locally; the site serves optimized .webp
+screenshots/*-poster.png
