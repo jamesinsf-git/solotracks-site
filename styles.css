@@ -157,6 +157,27 @@ a:hover { text-decoration: underline; }
 .appstore-badge:hover { transform: scale(1.03); text-decoration: none; }
 .appstore-badge.pulse { animation: glowPulse 4s ease-in-out infinite; }
 
+/* Google Play badge — custom pill (matches the 21-academy button), themed violet */
+.play-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  padding: 11px 21px;
+  border-radius: 13px;
+  background: linear-gradient(180deg, #1c1a24, #0a090e);
+  border: 1px solid var(--hair-3);
+  box-shadow: 0 8px 22px -8px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.06);
+  color: #fff;
+  text-decoration: none;
+  transition: transform 0.15s ease;
+}
+.play-badge:hover { transform: scale(1.03); text-decoration: none; }
+.play-badge .gplay { width: 21px; height: 23px; fill: #fff; flex: none; }
+.play-badge .stack { display: flex; flex-direction: column; line-height: 1; text-align: left; }
+.play-badge .stack .top { font-size: 9px; letter-spacing: 0.04em; opacity: 0.82; }
+.play-badge .stack .bot { font-size: 17px; font-weight: 700; margin-top: 2px; }
+.play-badge.pulse { animation: glowPulse 4s ease-in-out infinite; }
+
 .pricing-line {
   margin-top: 16px;
   font-size: 13px;
